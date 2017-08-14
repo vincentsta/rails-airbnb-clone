@@ -1,0 +1,29 @@
+#map {
+  /*width: 30%;*/
+  height: 100vh;
+  position: sticky !important;
+  top: 0px !important;
+  width: 100%;
+}
+
+.layout-main {
+  display: flex;
+  align-items: stretch;
+}
+.layout-cards {
+  /*flex-grow: 1;
+  flex-shrink: 1;*/
+  margin: 10px;
+
+}
+.layout-map {
+  /*flex-basis: 300px;*/
+  /*width: 400px;*/
+  flex: 0 0 30%;
+}
+
+@media (max-width: 600px) {
+  .layout-main {
+    flex-direction: column;
+  }
+}
