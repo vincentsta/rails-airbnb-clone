@@ -3,9 +3,20 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');">
-				<h1> Work while vacationing </h1>
-				<p> Find a short-term job anywhere anytime </p>
+			<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 30%, rgba(0,36,61,0.6) 70%), url(http://res.cloudinary.com/dkalpv2xf/image/upload/v1502718495/Projet/ice-cream-truck_4460x4460.jpg);">
+				<div class="banner-content">
+					<h1> Travaillez sur votre lieu de vacances </h1>
+					<p> Trouvez un job saisonnier selon vos vos disponibilites </p>
+				</div>
+					<div class = "form">
+					<%= simple_form_for @user do |f| %>
+					<%= f.input :location, label: "Où?" placeholder: "Votre lieu de vacances"%>
+					<%= f.input :start_time, label: "Quand?", placeholder: "Date de début", as: date %>
+					<%= f.input :end_date, placeholder: "Date de fin", as: date %>
+					<%= f.button :submit %>
+						<% end %>	
+					</div>
+				<div class="btn btn-danger"> Recherchez </div>
 			</div>
 		</div>
 	</div>
