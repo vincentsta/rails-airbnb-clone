@@ -16,6 +16,9 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
+# GEMs installed for the project
+gem 'devise'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
