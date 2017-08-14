@@ -18,6 +18,7 @@ gem 'uglifier'
 
 # GEMs installed for the project
 gem 'devise'
+gem 'figaro'
 
 group :development, :test do
   gem 'pry-byebug'
