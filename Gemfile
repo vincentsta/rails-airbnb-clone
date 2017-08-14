@@ -20,6 +20,8 @@ gem 'uglifier'
 gem 'devise'
 gem 'figaro'
 gem 'cloudinary'
+gem 'faker'
+
 
 group :development, :test do
   gem 'pry-byebug'
