@@ -1,11 +1,12 @@
 .devise-links-session {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 0.5em;
 }
 
 .devise-links {
   cursor: pointer;
   font-size: 14px;
+  color: $brand-primary;
 }
 
 .devise-links:hover {
