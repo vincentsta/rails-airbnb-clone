@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title>Hey Laura</title>
+    <link rel=“icon” href= <%= image_path "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502728312/Projet/Laura-logo.png" %> type=“image/png”>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
+
   </head>
   <body>
     <%= render 'shared/navbar' %>
@@ -16,6 +18,7 @@
         <%= yield %>
       </div>
     </div>
+    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
   </body>
 </html>
