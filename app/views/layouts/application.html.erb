@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Hey Laura</title>
-    <link rel=“icon” href= <%= image_path "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502728312/Projet/Laura-logo.png" %> type=“image/png”>
     <%= csrf_meta_tags %>
+    <link rel="icon" href= "<%= image_path "logo.png" %>" type="image/png">
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
@@ -20,5 +20,6 @@
     </div>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
+    <%= yield(:js) %>
   </body>
 </html>

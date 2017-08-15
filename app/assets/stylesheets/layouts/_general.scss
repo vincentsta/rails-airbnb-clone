@@ -14,5 +14,18 @@
 }
 
 .criteria h3 {
-  size: 14px;
+  font-size: 16px;
 }
+
+.criteria li {
+  font-size: 12px;
+}
+
+.collapse {
+  height: 0;
+  overflow: hidden;
+}
+
+// .layout-map, #map, #filter {
+//   transition: all 3s !important;
+// }
