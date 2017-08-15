@@ -9,8 +9,8 @@ class Company < ApplicationRecord
   # TODO: validates :location, presence: true
   validates :industry, presence: true
   # TODO: gerer des categories d industries
-  #mount_uploader :picture, PictureUploader
-  #mount_uploader :logo, LogoUploader
+  mount_uploader :picture, PhotoUploader
+  mount_uploader :logo, PhotoUploader
 
   def user_is_not_a_candidate
     if user.nil? || user.is_candidate
