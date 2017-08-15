@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :jobs, only: [ :index, :show] do
     resources :job_requests, only: [ :create ]
   end
-  resources :user, only: [ :show]
+  resources :users, only: [ :show]
 
   namespace :recruiter do
     # TODO: pour la vue recruteur - controlleur non cree (P2)

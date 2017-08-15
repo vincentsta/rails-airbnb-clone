@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="box">
+
+
+    <h1>
+      Dashboard des candidatures
+    </h1>
+
+      <%= @user.first_name %>, voici ton historique de candidatures :
+
+      <% @user.job_requests.each_with_index do |job_request, index| %>
+        <div class="message">
+      <%= cl_image_tag job_request.job.company.logo, height: 60, width: 60, crop: :fill %>
+
+          <div class="message-name">
+            <h3><%= job_request.job.company.name %></h3>
+            <h3 class="remove-margin"><%= job_request.job.title %></h3>
+            <p><%= job_request.created_at.strftime("%d/%m/%Y") %></p>
+          </div>
+          <div class="message-body">
+            <p><strong>Your message : </strong></p>
+            <p>
+              <%= job_request.message %>
+            </p>
+          </div>
+          <div class="message-status">
+            <p class="status pending"><%= job_request.current_status %></p>
+
+          </div>
+        </div>
+      <% end %>
+
+  </div>
+</div>
