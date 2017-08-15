@@ -18,10 +18,9 @@ gem 'uglifier'
 
 # GEMs installed for the project
 gem 'devise'
-gem 'figaro'
 gem 'cloudinary'
 gem 'faker'
-
+gem 'carrierwave', '~> 0.11.2'
 
 group :development, :test do
   gem 'pry-byebug'

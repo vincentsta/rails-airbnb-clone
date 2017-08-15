@@ -83,5 +83,55 @@ def create_job_and_candidates
   end
 end
 
-create_users_and_companies
-create_job_and_candidates
+def add_image_to_jobs
+  puts "add images to jobs"
+  url = "http://lorempixel.com/800/600/business/"
+  Job.all.each do |job|
+    job.remote_image_url = url
+    puts job.save
+  end
+end
+
+def add_picture_to_companies
+  puts "add images to companies"
+  url = "http://lorempixel.com/800/600/technics/"
+  Company.all.each do |company|
+    company.remote_picture_url = url
+    puts company.save
+  end
+end
+
+def add_logo_to_companies
+  puts "add logos to companies"
+  url = "http://lorempixel.com/100/100/abstract/"
+  Company.all.each do |company|
+    current_url = url
+    current_url = "https://secure.meetupstatic.com/photos/event/8/b/3/a/global_440255642.jpeg" if company.name == "Le Wagon"
+    current_url = "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502728312/Projet/Laura-logo.png" if company.name == "Hey Laura"
+    company.remote_logo_url = current_url
+    puts company.save
+  end
+end
+
+def add_location_to_jobs
+  puts "add addresses in Paris or Vincennes to jobs"
+  addresses = ["rue de rivoli Paris", "rue de Paris Vincennes", "rue ordener Paris", "rue Oberkampf Paris", "boulevard Voltaire Paris", "rue de montreuil Vincennes", "rue d'Assas Paris", "boulevard Saint-Michel Paris", "rue de la Liberté Vincennes"]
+  Job.all.each do |job|
+    num = rand(1..50).to_s
+    job.location = "#{num} #{addresses.sample}"
+    job.save
+  end
+end
+
+def add_category_to_jobs
+  puts "add category to jobs"
+  categories = ["Office", "Vente", "Logistique", "Evènement"]
+end
+
+# create_users_and_companies
+# create_job_and_candidates
+add_image_to_jobs
+add_picture_to_companies
+add_logo_to_companies
+add_location_to_jobs
+add_category_to_jobs
