@@ -132,10 +132,10 @@ def add_category_to_jobs
   end
 end
 
-# create_users_and_companies
-# create_job_and_candidates
-# add_image_to_jobs
-# add_picture_to_companies
-# add_logo_to_companies
-# add_location_to_jobs
+create_users_and_companies
+create_job_and_candidates
+add_image_to_jobs
+add_picture_to_companies
+add_logo_to_companies
+add_location_to_jobs
 add_category_to_jobs
