@@ -1,35 +1,39 @@
-<div class="container">
-	<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 60%, rgba(0,36,61,0.6) 80%), url(http://res.cloudinary.com/dkalpv2xf/image/upload/v1502718495/Projet/ice-cream-truck_4460x4460.jpg);">
-
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="banner-content">
-					<h1> Travaillez sur votre lieu de vacances </h1>
-					<p> Trouvez un job saisonnier selon vos vos disponibilites </p>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-12">
-					<div class = "form" class="form-inline">
-						<form action="<%= jobs_path %>">
-							<div class="form-group">
-								<label for="Location">Ou?</label>
-								<input type="text" id="location" placeholder="Votre lieu de vacances">
-							</div>
-							<div class="form-group">
-								<label for="Date">Quand?</label>
-								<input type="date" id= "start_date" placeholder="<%= Date.today %>">
-								<input type="date" id= "end_date" placeholder="Date de fin">
-							</div>
-							<div class="form-group-button">
-								<input type="submit" value="Recherchez" class="btn btn-danger">
-							</div>
-						</form>
-					</div>
-				</div>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%), url(http://res.cloudinary.com/dkalpv2xf/image/upload/v1502718495/Projet/ice-cream-truck_4460x4460.jpg);">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="banner-content">
+				<h1> Travaillez sur votre lieu de vacances </h1>
+				<p> Trouvez un job saisonnier selon vos disponibilites </p>
 			</div>
 		</div>
+<!-- 		<div class="row">
+			<div class="col-xs-12"> -->
+				<div class = "form" class="form-inline">
+					<form action="<%= jobs_path %>">
+						<div class="form-group">
+							<label for="Location">Ou?</label>
+							<input name="location" type="text" id="location" placeholder="Votre lieu de vacances">
+						</div>
+						<div class="form-group">
+							<label for="Date">Quand?</label>
+							<input name="start_date" type="date" id= "start_date" placeholder="<%= Date.today %>">
+							<input name="end_date" type="date" id= "end_date" placeholder="Date de fin">
+						</div>
+						<div class="form-group-button">
+							<input type="submit" value="Recherchez" class="btn btn-danger">
+						</div>
+					</form>
+				</div>
+		<!-- 	</div>
+		</div>	 -->	
+	</div>
+</div>
 
+<div class="jobs-examples">
+	<div class="row">
+		<div class="col-xs-4">
+			<h1>Paris</h1>
+
+		</div>
 	</div>
 </div>
