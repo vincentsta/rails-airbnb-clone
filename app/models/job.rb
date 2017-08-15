@@ -5,5 +5,6 @@ class Job < ApplicationRecord
   validates :title, presence: true, uniqueness: { scope: :company, message: "Ce job existe déjà dans votre société" }
   validates :start_date, :end_date, presence: true
 
+  mount_uploader :image, PhotoUploader
 
 end
