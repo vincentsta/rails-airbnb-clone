@@ -8,7 +8,6 @@ class JobsController < ApplicationController
 
   def index
     # TODO: filtrer suivant query de la home params = location / start_date / end_date
-    raise
     @jobs = Job.all
   end
 

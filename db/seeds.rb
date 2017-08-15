@@ -107,7 +107,7 @@ def add_logo_to_companies
   Company.all.each do |company|
     current_url = url
     current_url = "https://secure.meetupstatic.com/photos/event/8/b/3/a/global_440255642.jpeg" if company.name == "Le Wagon"
-    current_url = "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502728312/Projet/Laura-logo.png" if company.name == "Hey Laura"
+    current_url = "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502728312/Projet/Laura-logo.png" if company.name == "Hey_Laura"
     company.remote_logo_url = current_url
     puts company.save
   end
@@ -126,12 +126,16 @@ end
 def add_category_to_jobs
   puts "add category to jobs"
   categories = ["Office", "Vente", "Logistique", "Evènement"]
+  Job.all.each do |job|
+    job.category = categories.sample
+    job.save
+  end
 end
 
-create_users_and_companies
-create_job_and_candidates
-add_image_to_jobs
-add_picture_to_companies
-add_logo_to_companies
-add_location_to_jobs
+# create_users_and_companies
+# create_job_and_candidates
+# add_image_to_jobs
+# add_picture_to_companies
+# add_logo_to_companies
+# add_location_to_jobs
 add_category_to_jobs

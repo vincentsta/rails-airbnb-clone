@@ -3,7 +3,7 @@
     <div class="layout-results">
       <div class="row">
         <div class="criteria text-left">
-          <h3><%= "Résultats de votre recherche pour un job à VILLE TODO du #{Date.today} STARTDATE TO DO à ENDDATE TODO" %></h3>
+          <h3><%= "#{@jobs.count} résultats pour votre recherche de job à VILLE TODO du #{Date.today.strftime("%d/%m/%Y")} STARTDATE TO DO à ENDDATE TODO" %></h3>
         </div>
       </div>
       <div class="row">
