@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :index, :show]
+  layout 'home_layout', only: [ :home ]
+
 
   def home
     # TODO: filtrer suivant les jobs a afficher sur la home
@@ -8,7 +10,10 @@ class JobsController < ApplicationController
 
   def index
     # TODO: filtrer suivant query de la home params = location / start_date / end_date
-    @jobs = Job.all
+
+    location = jobs_params[:location]
+    @jobs = Job.where("location ILIKE ?", "%#{location}")
+  
   end
 
   def job
@@ -17,6 +22,10 @@ class JobsController < ApplicationController
     @job_r = JobRequest.new
   end
 
+  private
 
+  def jobs_params
+  params.permit(:location, :start_date, :end_date)
+  end
 
 end
