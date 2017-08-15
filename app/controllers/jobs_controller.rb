@@ -10,10 +10,10 @@ class JobsController < ApplicationController
 
   def index
     # TODO: filtrer suivant query de la home params = location / start_date / end_date
+
     location = jobs_params[:location]
     @jobs = Job.where("location ILIKE ?", "%#{location}")
-   
-
+  
   end
 
   def job

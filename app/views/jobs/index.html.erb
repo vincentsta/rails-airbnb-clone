@@ -1,0 +1,25 @@
+<div class="index-page">
+  <div class="layout-main">
+    <div class="layout-results">
+      <div class="row">
+        <div class="criteria text-left">
+          <h3><%= "#{@jobs.count} résultats pour votre recherche de job à VILLE TODO du #{Date.today.strftime("%d/%m/%Y")} STARTDATE TO DO à ENDDATE TODO" %></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="layout-cards">
+          <% @jobs.each do |job| %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <%= render 'jobcard', job: job %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="layout-map">
+      <div id="map">
+        <h2>TO DO INSERT MAP</h2>
+      </div>
+    </div>
+  </div>
+</div>
