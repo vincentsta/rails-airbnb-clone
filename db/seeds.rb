@@ -128,8 +128,8 @@ def add_category_to_jobs
   categories = ["Office", "Vente", "Logistique", "Evènement"]
 end
 
-# create_users_and_companies
-# create_job_and_candidates
+create_users_and_companies
+create_job_and_candidates
 add_image_to_jobs
 add_picture_to_companies
 add_logo_to_companies
