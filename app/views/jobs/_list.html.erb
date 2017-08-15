@@ -30,12 +30,31 @@
       </div>
     </div>
     <div class="layout-map">
-      <div id="filter" class="collapse">
+      <div id="filter" class="collapse filter-form">
         <%= simple_form_for :query,  url: filtered_jobs_path , :method => :get do |f| %>
-            <%= f.input :start_date, as: :string, input_html: {type: :date, value: @search[:start_date]} %>
-            <%= f.input :end_date, as: :string, input_html: {type: :date, value: @search[:end_date]} %>
-            <%= f.input :location, input_html: {value: @search[:location]} %>
-            <%= f.submit "Search", class: "btn btn-primary" %>
+            <%= f.input :start_date,
+              required: false,
+              as: :string,
+              label: 'Dispo du',
+              input_html: {type: :date, value: @search[:start_date]} %>
+            <%= f.input :end_date,
+              required: false,
+              label: "jusqu'au ",
+              as: :string,
+              input_html: {type: :date, value: @search[:end_date]} %>
+            <%= f.input :location,
+              required: false,
+              label: "Ville",
+              input_html: {value: @search[:location]} %>
+            <%= f.input :min_salary,
+              required: false,
+              label: "Salaire minimum mensuel",
+              input_html: {value: @search[:min_salary]} %>
+            <%= f.input :categories,
+              collection: @categories,
+              required: false,
+              label: "Catégorie" %>
+            <%= f.submit "Filtrer", class: "btn btn-primary" %>
         <% end %>
       </div>
       <div id="map"></div>

@@ -10,10 +10,12 @@ class JobsController < ApplicationController
 
   def index
     search_for_index(jobs_params)
+    jobs_categories
   end
 
   def filter
     search_for_index(filter_jobs_params)
+    jobs_categories
   end
 
   # def job
@@ -23,6 +25,13 @@ class JobsController < ApplicationController
   # end
 
   private
+
+  def jobs_categories
+    # definit les categories de job pour afficher dans les filtres
+    @categories = Job.select(:category).distinct.map do |job|
+      job.category
+    end
+  end
 
   def jobs_params
     params.permit(:location, :start_date, :end_date)
