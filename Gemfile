@@ -18,7 +18,6 @@ gem 'uglifier'
 
 # GEMs installed for the project
 gem 'devise'
-gem 'figaro'
 gem 'cloudinary'
 gem 'faker'
 
