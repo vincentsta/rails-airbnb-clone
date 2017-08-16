@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'jobs#home'
   resources :jobs, only: [ :index, :show] do
+    collection do
+      get 'filtered', to: "jobs#filter" # For filter on index page
+    end
     resources :job_requests, only: [ :create ]
   end
-  resources :user, only: [ :show]
+  resources :users, only: [ :show]
 
   namespace :recruiter do
     # TODO: pour la vue recruteur - controlleur non cree (P2)

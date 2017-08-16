@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Hey Laura</title>
-    <link rel=“icon” type=“image/png” href= <% image_tag "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502797793/Projet/favicon-96x96.png"%> >
+    
     <%= csrf_meta_tags %>
+    <link rel=“icon” type=“image/png” href= <% image_tag "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502797793/Projet/favicon-96x96.png"%> >
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
@@ -20,5 +21,6 @@
     </div>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
+    <%= yield(:js) %>
   </body>
 </html>
