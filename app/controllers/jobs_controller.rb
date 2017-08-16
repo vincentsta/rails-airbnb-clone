@@ -5,13 +5,18 @@ class JobsController < ApplicationController
 
   def home
     # TODO: filtrer suivant les jobs a afficher sur la home
-    @jobs = Job.all
+    @jobs = Job.all.sample(3)
   end
 
   def index
     search_for_index(jobs_params)
   end
 
+
+  def show
+    @job = Job.find(params[:id])
+  end
+  
   def filter
     search_for_index(filter_jobs_params)
   end
