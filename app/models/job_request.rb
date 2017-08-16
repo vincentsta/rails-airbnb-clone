@@ -14,4 +14,5 @@ class JobRequest < ApplicationRecord
     return true
   end
 
+
 end

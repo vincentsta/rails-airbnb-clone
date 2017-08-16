@@ -1,0 +1,138 @@
+
+.content {
+  display: flex;
+  align-items: stretch;
+}
+.job-container {
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 10px;
+}
+
+.form-container {
+  flex: 0 0 30%;
+  /*width: 30%;*/
+}
+
+.job-highlight{
+	display: flex;
+	height: 180px;
+	background-color: rgba(255,255,255,0.9);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	border: white 1px solid;
+	h2 {
+		font-size: 24px;
+		font-weight: bold;
+		text-shadow: 0px 1px rgba(0, 0, 0, 0.2)
+	}
+	h3{
+		font-size: 18px;
+	}
+	p{
+		font-size: 12px;
+		font-weight: lighter;
+	}
+}
+
+.job-logo {
+  flex: 0 0 20%;
+  padding:10px;
+}
+
+.job-title{
+	h2{
+		font: 24 px;
+		color: red;
+		opacity: 0.6;
+	}
+	flex-grow: 1;
+  flex-shrink: 1;
+  margin: 10px;
+}
+
+.job-infos{
+	flex: 0 0 30%;
+	margin: 30px;
+	text-align: left;
+	font-size: 11px;
+	p {
+	font-weight: bolder;
+	color: red;
+	opacity: 0.6;
+	}
+}
+
+.job-infos-dates{
+	margin: 10px;
+	text-align: left;
+	list-style-type: none;
+}
+
+.job-infos-salaire{
+	margin: 10px;	
+	text-align:left;
+	list-style-type: none;
+}
+
+.job-description {
+	background-color: rgba(255,255,255,0.9);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	border: white 1px solid;
+	margin-top: 10px;
+	padding : 20px;
+	height: 300px;
+	font-weight: lighter;
+	h3{
+		font-size: 18px;
+	}
+}
+
+.job-profile {
+	background-color: rgba(255,255,255,0.9);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+	border: white 1px solid;
+	margin-top: 10px;
+	padding : 20px;
+	height: 200px;
+	font-weight: lighter;
+	h3{
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column;
+  }
+}
+
+#form {
+  /*width: 30%;*/
+  background-color: rgba(255,255,255,0.9);
+  height: 100vh;
+  position: sticky !important;
+  top: 0px !important;
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
+  margin-left: 30px;
+  text-align: center;
+  h2 {
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+	color: red;
+	opacity: 0.6;
+  }
+}
+
+.application-form {
+  // position: sticky !important;
+  // top: 0px !important;
+  width: 100%;
+  font-size : 18px;
+  margin-top: 30px;
+}
+
+
+

@@ -2,38 +2,50 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="banner-content">
-				<h1> Travaillez sur votre lieu de vacances </h1>
-				<p> Trouvez un job saisonnier selon vos disponibilites </p>
+				<h1> Travaille sur ton lieu de vacances </h1>
+				<p>Trouve un job d'été selon tes disponibilités</p>
 			</div>
 		</div>
-<!-- 		<div class="row">
-			<div class="col-xs-12"> -->
+		<div class="row">
+			<div class="col-xs-12">
 				<div class = "form" class="form-inline">
 					<form action="<%= jobs_path %>">
 						<div class="form-group">
-							<label for="Location">Ou?</label>
-							<input name="location" type="text" id="location" placeholder="Votre lieu de vacances">
+						<!-- 	<label for="Location"> Votre ville</label> -->
+							<input name="location" type="text" id="location" placeholder="Ton lieu de vacances">
+						<!-- </div>
+						<div class="form-group"> -->
+						<!-- 	<label for="Date"> Vos disponibilites </label> -->
+							<input name="start_date" type="text" id= "start_date" placeholder="A partir du" onfocus="(this.type='date')">
+							<input name="end_date" type="text" id= "end_date" placeholder="jusqu'au" onfocus="(this.type='date')">
 						</div>
-						<div class="form-group">
-							<label for="Date">Quand?</label>
-							<input name="start_date" type="date" id= "start_date" placeholder="<%= Date.today %>">
-							<input name="end_date" type="date" id= "end_date" placeholder="Date de fin">
-						</div>
-						<div class="form-group-button">
-							<input type="submit" value="Recherchez" class="btn btn-danger">
+						<div id="form-group-button">
+							<input type="submit" value="Rechercher" class="btn btn-danger">
 						</div>
 					</form>
 				</div>
-		<!-- 	</div>
-		</div>	 -->	
+			</div>
+		</div>		
 	</div>
 </div>
 
-<div class="jobs-examples">
-	<div class="row">
-		<div class="col-xs-4">
-			<h1>Paris</h1>
-
+<div class="container">
+	<div class="jobs-examples">
+		<div class="row">
+			<div class="jobs-example-1">
+				<div class="jobs-examples-category">
+					<h2>Derniers jobs mis en ligne</h2>
+				</div>
+				<div class="row">
+					<div class="jobs-examples-category-cards">
+						<% @jobs.each do |job| %>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<%= render 'jobcard', job: job %>
+						</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
