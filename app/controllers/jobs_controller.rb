@@ -18,9 +18,8 @@ class JobsController < ApplicationController
 
   def show
     @job_request = JobRequest.new
-
   end
-  
+
   def filter
     search_for_index(filter_jobs_params)
     jobs_categories
@@ -48,16 +47,12 @@ class JobsController < ApplicationController
   def set_job
    @job = Job.find(params[:id])
   end
-  
-  def show
-  end
-
-  private
 
   def jobs_categories
     # definit les categories de job pour afficher dans les filtres
     @categories = Job.select(:category).distinct.map do |job|
       job.category
+    end
   end
 
 
