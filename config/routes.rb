@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'jobs#home'
   resources :jobs, only: [ :index, :show] do
+
     collection do
       post 'filtered', to: "jobs#filter" # For filter on index page
     end
-    resources :job_requests, only: [ :create ]
+    resources :job_requests, only: [ :create, :edit, :update ]
+    
   end
   resources :users, only: [ :show]
 
