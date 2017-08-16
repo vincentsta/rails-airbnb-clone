@@ -1,16 +1,16 @@
-// const animateFilterBtn = () => {
-//   var filterBtn = document.getElementById("filter-btn");
-//   var filterVisibility = -1;
-//   filterBtn.addEventListener("click", (event) => {
-//     event.preventDefault;
-//     var filterForm = document.getElementById("filter");
-//     var criteriaHome = document.getElementById("home-search-criteria");
-//     filterVisibility = filterVisibility * -1;
-//     if (filterVisibility === 1) TweenLite.to(filterForm, 0.5, {className:"-=collapse"});
-//     if (filterVisibility === -1) TweenLite.to(filterForm, 0.5, {className:"+=collapse"});
-//     TweenLite.to(criteriaHome, 0.5, {className:"+=collapse"});
-//   });
-// };
+const animateFilterBtn = () => {
+  var filterBtn = document.getElementById("filter-btn");
+  var filterVisibility = -1;
+  filterBtn.addEventListener("click", (event) => {
+    event.preventDefault;
+    var filterForm = document.getElementById("filter");
+    var criteriaHome = document.getElementById("home-search-criteria");
+    filterVisibility = filterVisibility * -1;
+    if (filterVisibility === 1) TweenLite.to(filterForm, 0.5, {className:"-=collapse"});
+    if (filterVisibility === -1) TweenLite.to(filterForm, 0.5, {className:"+=collapse"});
+    TweenLite.to(criteriaHome, 0.5, {className:"+=collapse"});
+  });
+};
 
 const rotateCards = () => {
   var cards = document.querySelectorAll(".card");
