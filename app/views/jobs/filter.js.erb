@@ -1,5 +1,3 @@
-console.log("je suis filter.js");
-
 const hideCard = ((el) => {
   el.remove();
 });
@@ -21,7 +19,6 @@ document.querySelectorAll(".job-js").forEach((job_card) => {
 
 <% @suppr_jobs_id.each do |job_id| %>
   document.querySelectorAll(".job-js").forEach((job_card) => {
-    console.log("suppr");
     if (Number.parseInt(job_card.dataset.id, 10) === <%= job_id %>) {
       hideCard(job_card);
     }
