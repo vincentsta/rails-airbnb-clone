@@ -12,23 +12,28 @@ class JobsController < ApplicationController
     search_for_index(jobs_params)
     @jobs = @jobs.sort_by {|job| job.title}
     jobs_categories
-    @j_ids = @jobs.map { |job| job.id }
+    @j_ids = @jobs.map { |job| job.id } || [0]
   end
 
   def filter
     search_for_index(filter_jobs_params)
     jobs_categories
+    @j_ids = @jobs.map { |job| job.id } || [0]
 
-    previous_ids = filter_jobs_params[:job_ids].split(" ") || []
-    previous_jobs = previous_ids.map { |id| Job.find(id.to_i) }
+    previous_ids = filter_jobs_params[:job_ids].split(" ") || [0]
+    previous_jobs = previous_ids.map { |id| Job.find(id.to_i) } || []
 
-    @new_jobs = @jobs.reject { |job| previous_jobs.include?(job) }
-    suppr_jobs = previous_jobs.reject { |job| @jobs.include?(job) }
-    @suppr_jobs_id = suppr_jobs.map { |job| job.id }
+    @new_jobs = @jobs.reject { |job| previous_jobs.include?(job) } || []
+    suppr_jobs = previous_jobs.reject { |job| @jobs.include?(job) } || []
+    @suppr_jobs_id = suppr_jobs.map { |job| job.id } || [0]
 
-    respond_to do |format|
-      format.html
-      format.js  # <-- idem
+    if previous_jobs.nil? || previous_jobs.length == 0
+      render :index
+    else
+      respond_to do |format|
+        format.html
+        format.js  # <-- idem
+      end
     end
   end
 

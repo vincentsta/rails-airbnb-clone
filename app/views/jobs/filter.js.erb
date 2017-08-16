@@ -4,11 +4,25 @@ const hideCard = ((el) => {
   el.remove();
 });
 
+// update le nb de resultats
+
+const results = document.getElementById("nb-results");
+results.innerHTML = `<%= "#{@jobs.count} résultats pour ta recherche. " %>
+              <% if @jobs.count > 50 %>Trop cool, l'embarras du choix !<% end %>
+              <% if @jobs.count < 5 %> Pas de chance, il va falloir élargir ta recherche !<% end %>`;
+
+// reinitialise la vue
+
+document.querySelectorAll(".job-js").forEach((job_card) => {
+  job_card.classList.remove("new");
+});
+
+// ajoute et supprime
 
 <% @suppr_jobs_id.each do |job_id| %>
   document.querySelectorAll(".job-js").forEach((job_card) => {
+    console.log("suppr");
     if (Number.parseInt(job_card.dataset.id, 10) === <%= job_id %>) {
-      console.log("hide");
       hideCard(job_card);
     }
   });
@@ -21,6 +35,7 @@ const hideCard = ((el) => {
   new_job.addClass("new");
   new_job.slideDown();
 <% end %>
+
 
 
 rotateCards();

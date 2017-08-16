@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+// .index-page {
+//   height: 100%;
+// }
+
 .layout-main {
   display: flex;
   align-items: stretch;
@@ -14,8 +18,11 @@
   /*flex-grow: 1;
   flex-shrink: 1;*/
   margin: 10px;
-
 }
+.layout-results {
+  flex: 0 0 70%;
+}
+
 .layout-map {
   /*flex-basis: 300px;*/
   /*width: 400px;*/
