@@ -1,0 +1,19 @@
+      job_card.classList.add("hide-el");
+
+
+console.log("je suis filter.js");
+
+const resultsList = document.getElementById("results");
+
+<% @new_jobs.each do |job| %>
+  const new_job = '<%= j render "jobcard", job: job %>)';
+    // Add it to the DOM, at the end of the existing reviews. It's still hidden.
+  console.log(new_job);
+    // Show the new review with an animation!
+    // Reset the form
+<% end %>
+
+
+
+
+

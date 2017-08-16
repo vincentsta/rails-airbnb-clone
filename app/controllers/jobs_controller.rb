@@ -10,6 +10,9 @@ class JobsController < ApplicationController
 
   def index
     search_for_index(jobs_params)
+    @jobs = @jobs.sort_by {|job| job.title}
+    jobs_categories
+    @j_ids = @jobs.map { |job| job.id } || [0]
   end
 
 
@@ -19,22 +22,44 @@ class JobsController < ApplicationController
   
   def filter
     search_for_index(filter_jobs_params)
+    jobs_categories
+    @j_ids = @jobs.map { |job| job.id } || [0]
+
+    previous_ids = filter_jobs_params[:job_ids].split(" ") || [0]
+    previous_jobs = previous_ids.map { |id| Job.find(id.to_i) } || []
+
+    @new_jobs = @jobs.reject { |job| previous_jobs.include?(job) } || []
+    suppr_jobs = previous_jobs.reject { |job| @jobs.include?(job) } || []
+    @suppr_jobs_id = suppr_jobs.map { |job| job.id } || [0]
+
+    if previous_jobs.nil? || previous_jobs.length == 0
+      render :index
+    else
+      respond_to do |format|
+        format.html
+        format.js  # <-- idem
+      end
+    end
   end
 
-  # def job
-  #   @job = Job.find(params[:id])
-  #   @company = @job.company
-  #   @job_r = JobRequest.new
-  # end
+  def show
+  end
 
   private
+
+  def jobs_categories
+    # definit les categories de job pour afficher dans les filtres
+    @categories = Job.select(:category).distinct.map do |job|
+      job.category
+    end
+  end
 
   def jobs_params
     params.permit(:location, :start_date, :end_date)
   end
 
   def filter_jobs_params
-    params.require(:query).permit(:location, :start_date, :end_date)
+    params.require(:query).permit(:location, :start_date, :end_date, :job_ids)
   end
 
   def search_for_index(params)
