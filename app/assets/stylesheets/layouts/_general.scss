@@ -21,14 +21,6 @@
   font-size: 12px;
 }
 
-.collapse {
-  height: 0;
-  overflow: hidden;
+.hide-el {
+  display: none;
 }
-
-.filter-form {
-  padding: 20px 5px;
-}
-// .layout-map, #map, #filter {
-//   transition: all 3s !important;
-// }

@@ -1,0 +1,26 @@
+console.log("je suis filter.js");
+
+const hideCard = ((el) => {
+  el.remove();
+});
+
+
+<% @suppr_jobs_id.each do |job_id| %>
+  document.querySelectorAll(".job-js").forEach((job_card) => {
+    if (Number.parseInt(job_card.dataset.id, 10) === <%= job_id %>) {
+      console.log("hide");
+      hideCard(job_card);
+    }
+  });
+<% end %>
+
+
+<% @new_jobs.each do |job| %>
+  var new_job = $("<%= j render 'jobcard', job: job %>").hide();
+  $('#results').prepend(new_job);
+  new_job.addClass("new");
+  new_job.slideDown();
+<% end %>
+
+
+rotateCards();

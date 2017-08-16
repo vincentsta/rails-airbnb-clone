@@ -1,18 +1,22 @@
-<div class="card">
-  <%= link_to "", job_path(job), class: "card-link" %>
-  <div class="card-main" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url( <%= image_path job.image.url(:standard) %>)">
-    <div class="card-category"> <%= job.category %> </div>
-    <div class="card-description">
-      <h2> <%= job.title %> </h2>
-      <p> <%= "#{job.start_date.strftime("%d/%m/%Y")} du #{job.end_date.strftime("%d/%m/%Y")}" %> </p>
-    </div>
-    <%= image_tag job.company.logo.url(:logo), class: "card-user"%>
-    <div class="card-flip">
-        <h2> <%= "@ #{job.company.name}" %> </h2>
-        <h2> <%= "#{job.title}" %> </h2>
-        <p> <%= "#{job.start_date.strftime("%d/%m/%Y")} du #{job.end_date.strftime("%d/%m/%Y")}" %> </p>
-        <p class = "text-right"> <strong> <%= "#{job.monthly_salary} € / m" %> </strong> </p>
-        <p> <small><%= job.description %></small></p>
+<div class="col-xs-12 col-sm-6 col-md-4 job-js" data-id = <%= job.id %>   >
+  <div class="card"  >
+    <%= link_to "", job_path(job), class: "card-link" %>
+    <div class="card-main" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url( <%= image_path job.image.url(:standard) %>)">
+      <div class="cardFace front">
+        <div class="card-category"> <%= job.category %> </div>
+        <div class="card-description">
+          <h2> <%= job.title %> </h2>
+          <p> <%= "#{job.start_date.strftime("%d/%m/%Y")} du #{job.end_date.strftime("%d/%m/%Y")}" %> </p>
+        </div>
+        <%= image_tag job.company.logo.url(:logo), class: "card-user"%>
+      </div>
+      <div class="card-flip cardFace back">
+          <h2> <%= "@ #{job.company.name}" %> </h2>
+          <h2> <%= "#{job.title}" %> </h2>
+          <p> <%= "#{job.start_date.strftime("%d/%m/%Y")} du #{job.end_date.strftime("%d/%m/%Y")}" %> </p>
+          <p class = "text-right"> <strong> <%= "#{job.monthly_salary} € / m" %> </strong> </p>
+          <p> <small><%= job.description %></small></p>
+      </div>
     </div>
   </div>
 </div>

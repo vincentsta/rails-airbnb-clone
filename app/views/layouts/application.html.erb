@@ -8,7 +8,6 @@
     <link rel="icon" href= "<%= image_path "logo.png" %>" type="image/png">
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-
   </head>
   <body>
     <%= render 'shared/navbar' %>
@@ -20,6 +19,7 @@
     </div>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
     <%= yield(:js) %>
   </body>
 </html>
