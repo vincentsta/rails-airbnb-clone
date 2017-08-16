@@ -8,7 +8,7 @@
 	padding-top: 40px;
 	}
 
-.form-group{
+.form-group {
 	font-size: 22px;
 	text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 	text-align: center;
@@ -16,3 +16,28 @@
 	opacity: 0.8;
 	}
 
+
+.jobs-example-1 {
+	background-color: white;
+	margin: 10px 10px 10px 10px;
+	padding: 5px;
+	color: red;
+	opacity: 0.8;	
+
+	h2{
+	font-size: 22px;
+	text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+	opacity: 0.8;
+	padding-top:0px;
+	}
+}
+
+.jobs-examples-category{
+	margin-bottom: 5px;
+	border-bottom: 1px lightgrey solid;
+}
+
+.jobs-examples-category-cards {
+	margin: 10px;
+
+}
