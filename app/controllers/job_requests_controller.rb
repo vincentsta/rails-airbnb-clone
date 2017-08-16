@@ -1,30 +1,45 @@
 class JobRequestsController < ApplicationController
+
+   before_action :set_job_request, only: [:edit, :update ]
+
+  def create
+	  @user = current_user
+  	@job_request = JobRequest.new
+  	@job = Job.find(params[:job_id])
+  	@job_request.job_id = @job.id
+  	@job_request.user_id = @user.id
+
+    if @job_request.save
+      flash[:notice] = "Ta candidature au poste de #{@job_request.job.title} a bien été transmise à #{@job_request.job.company.name}"
+      redirect_to jobs_path
+    else
+      render "jobs/show"
+    end
+  end
   
-	# def new
-	# 	@job = Job.find(params[:id])
- #  	@job_request = Job_request.new(job_request_params)
-	# end
+  def edit
+    @job = @job_request.job
+  end
 
-	def create
-  
-	@user = current_user
-	@job_request = JobRequest.new
-	@job = Job.find(params[:job_id])
-	@job_request.job_id = @job.id
-	@job_request.user_id = @user.id
-	# @job_request.save
+  def update
+    @job = @job_request.job
+    @job_request.update(job_params)
+    redirect_to recruiter_company_path(@job.company)
+  end
 
-	if @job_request.save
-		flash[:notice] = "Ta candidature au poste de #{@job_request.job.title} a bien été transmise à #{@job_request.job.company.name}"
-		redirect_to jobs_path
-	else
-		render "jobs/show"
-	end
+   private
 
-	end
+  def job_params
+    params.require(:job_request).permit(:current_status)
+  end
+
+  def set_job_request
+    @job_request = JobRequest.find(params[:id])
+  end
 
 	def job_request_params
     params.require(:job_request).permit(:job_id, :user_id, :current_status, :message)
   end
 
 end
+
