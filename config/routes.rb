@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'jobs#home'
   resources :jobs, only: [ :index, :show] do
     collection do
-      get 'filtered', to: "jobs#filter" # For filter on index page
+      post 'filtered', to: "jobs#filter" # For filter on index page
     end
     resources :job_requests, only: [ :create ]
   end

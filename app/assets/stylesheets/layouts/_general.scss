@@ -21,11 +21,6 @@
   font-size: 12px;
 }
 
-.collapse {
-  height: 0;
-  overflow: hidden;
+.hide-el {
+  display: none;
 }
-
-// .layout-map, #map, #filter {
-//   transition: all 3s !important;
-// }

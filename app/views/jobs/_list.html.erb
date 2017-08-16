@@ -4,11 +4,11 @@
       <div class="row">
         <div class="col-xs-12 col-md-8">
           <div class="criteria text-left">
-            <h3><%= "#{@jobs.count} résultats pour ta recherche. " %>
+            <h3 id="nb-results"><%= "#{@jobs.count} résultats pour ta recherche. " %>
               <% if @jobs.count > 50 %>Trop cool, l'embarras du choix !<% end %>
               <% if @jobs.count < 5 %> Pas de chance, il va falloir élargir ta recherche !<% end %>
             </h3>
-            <ul class="list-inline hidden-xs hidden-sm">
+            <ul class="list-inline hidden-xs hidden-sm" id="home-search-criteria">
               <% if @search[:start_date] %><li>Date de début: <%= @search[:start_date].strftime("%d/%m/%Y") %> </li><% end %>
               <% if @search[:end_date] %><li>Date de fin: <%= @search[:end_date].strftime("%d/%m/%Y") %> </li><% end %>
               <% if @search[:location] %><li>Localisation: <%= @search[:location] %> </li><% end %>
@@ -20,22 +20,41 @@
         </div>
       </div>
       <div class="row">
-        <div class="layout-cards">
+        <div class="layout-cards" id="results">
           <% @jobs.each do |job| %>
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <%= render 'jobcard', job: job %>
-            </div>
+            <%= render 'jobcard', job: job %>
           <% end %>
         </div>
       </div>
     </div>
     <div class="layout-map">
-      <div id="filter" class="collapse">
-        <%= simple_form_for :query,  url: filtered_jobs_path , :method => :get do |f| %>
-            <%= f.input :start_date, as: :string, input_html: {type: :date, value: @search[:start_date]} %>
-            <%= f.input :end_date, as: :string, input_html: {type: :date, value: @search[:end_date]} %>
-            <%= f.input :location, input_html: {value: @search[:location]} %>
-            <%= f.submit "Search", class: "btn btn-primary" %>
+      <div id="filter" class="collapse filter-form">
+        <%= simple_form_for :query,  url: filtered_jobs_path, remote: true, :method => :post do |f| %>
+            <%= f.input :start_date,
+              required: false,
+              as: :string,
+              label: 'Dispo du',
+              input_html: {type: :date, value: @search[:start_date]} %>
+            <%= f.input :end_date,
+              required: false,
+              label: "au ",
+              as: :string,
+              input_html: {type: :date, value: @search[:end_date]} %>
+            <%= f.input :location,
+              required: false,
+              label: "Ville",
+              input_html: {value: @search[:location]} %>
+            <%= f.input :min_salary,
+              required: false,
+              label: "Salaire minimum mensuel",
+              input_html: {value: @search[:min_salary]} %>
+            <%= f.input :categories,
+              collection: @categories,
+              required: false,
+              label: "Catégorie" %>
+            <%= f.input :job_ids, as: :hidden,
+              input_html: {value: @j_ids} %>
+            <%= f.submit "Filtrer", class: "btn btn-primary" %>
         <% end %>
       </div>
       <div id="map"></div>
@@ -44,14 +63,11 @@
 </div>
 
 <% content_for(:js) do %>
-  <script>
-    var filterBtn = document.getElementById("filter-btn");
-    filterBtn.addEventListener("click", (event) => {
-      event.preventDefault;
-      var filterForm = document.getElementById("filter");
-      filterForm.classList.toggle("collapse");
-    });
-  </script>
+  <%= javascript_tag do  %>
+    animateFilterBtn();
+    rotateCards();
+  <% end %>
+
   <script>
     function initMap() {
       // Create a map object and specify the DOM element for display.

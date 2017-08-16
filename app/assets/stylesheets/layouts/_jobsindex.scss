@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+// .index-page {
+//   height: 100%;
+// }
+
 .layout-main {
   display: flex;
   align-items: stretch;
@@ -14,16 +18,38 @@
   /*flex-grow: 1;
   flex-shrink: 1;*/
   margin: 10px;
-
 }
+.layout-results {
+  flex: 0 0 70%;
+}
+
 .layout-map {
   /*flex-basis: 300px;*/
   /*width: 400px;*/
   flex: 0 0 30%;
 }
 
+.collapse {
+  height: 0;
+  overflow: hidden;
+}
+
+// .deploy {
+//   height: 100vh !important;
+//   width: 100% !important;
+//   overflow: visible !important;
+// }
+
+.filter-form {
+  padding: 20px 5px;
+}
+
 @media (max-width: 600px) {
   .layout-main {
     flex-direction: column;
   }
+}
+
+.new .card {
+  border: 3px solid $red;
 }
