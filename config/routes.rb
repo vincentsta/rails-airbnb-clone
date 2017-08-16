@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'jobs#home'
   resources :jobs, only: [ :index, :show] do
-    resources :job_requests, only: [ :create ]
+    resources :job_requests, only: [ :create, :edit, :update ]
   end
   resources :users, only: [ :show]
 
