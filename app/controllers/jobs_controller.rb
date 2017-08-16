@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :index, :show, :filter]
   layout 'home_layout', only: [ :home ]
-
+  before_action :set_job, only: [:show]
 
   def home
     # TODO: filtrer suivant les jobs a afficher sur la home
@@ -17,7 +17,8 @@ class JobsController < ApplicationController
 
 
   def show
-    @job = Job.find(params[:id])
+    @job_request = JobRequest.new
+
   end
   
   def filter
@@ -42,6 +43,12 @@ class JobsController < ApplicationController
     end
   end
 
+  private
+
+  def set_job
+   @job = Job.find(params[:id])
+  end
+  
   def show
   end
 
@@ -51,8 +58,8 @@ class JobsController < ApplicationController
     # definit les categories de job pour afficher dans les filtres
     @categories = Job.select(:category).distinct.map do |job|
       job.category
-    end
   end
+
 
   def jobs_params
     params.permit(:location, :start_date, :end_date)

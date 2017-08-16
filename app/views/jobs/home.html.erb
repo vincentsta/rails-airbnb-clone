@@ -2,8 +2,8 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="banner-content">
-				<h1> Travaillez sur votre lieu de vacances </h1>
-				<p> Trouvez un job saisonnier selon vos disponibilites </p>
+				<h1> Travaille sur ton lieu de vacances </h1>
+				<p>Trouve un job d'été selon tes disponibilités</p>
 			</div>
 		</div>
 		<div class="row">
@@ -12,15 +12,15 @@
 					<form action="<%= jobs_path %>">
 						<div class="form-group">
 						<!-- 	<label for="Location"> Votre ville</label> -->
-							<input name="location" type="text" id="location" placeholder="Votre destination">
+							<input name="location" type="text" id="location" placeholder="Ton lieu de vacances">
 						<!-- </div>
 						<div class="form-group"> -->
 						<!-- 	<label for="Date"> Vos disponibilites </label> -->
-							<input name="start_date" type="text" id= "start_date" placeholder="Disponible a partir du" onfocus="(this.type='date')">
+							<input name="start_date" type="text" id= "start_date" placeholder="A partir du" onfocus="(this.type='date')">
 							<input name="end_date" type="text" id= "end_date" placeholder="jusqu'au" onfocus="(this.type='date')">
 						</div>
 						<div id="form-group-button">
-							<input type="submit" value="Recherchez" class="btn btn-danger">
+							<input type="submit" value="Rechercher" class="btn btn-danger">
 						</div>
 					</form>
 				</div>
@@ -32,19 +32,20 @@
 <div class="container">
 	<div class="jobs-examples">
 		<div class="row">
-			<div class="jobs-examples-category">
-				<h3>Derniers jobs mis en ligne</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="jobs-examples-category-cards">
-				<% @jobs.each do |job| %>
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<%= render 'jobcard', job: job %>
+			<div class="jobs-example-1">
+				<div class="jobs-examples-category">
+					<h2>Derniers jobs mis en ligne</h2>
 				</div>
-				<% end %>
+				<div class="row">
+					<div class="jobs-examples-category-cards">
+						<% @jobs.each do |job| %>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<%= render 'jobcard', job: job %>
+						</div>
+						<% end %>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>

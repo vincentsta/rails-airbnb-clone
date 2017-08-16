@@ -44,14 +44,18 @@
 		</div>
 	</div>
 	<div class="form-container">
-		<div class="application-form">
-			<%= simple_form_for [@job, @job_request] do |f| %>
-			<%= f.error_notification %>
-			<%= f.input :message, placeholder: 'Présentez-vous rapidement et expliquez au recruteur pourquoi vous etes le candidat ideal' %>
-			<%= f.input :status, type="hidden", value="pending"%>
-			<%= f.submit "Postuler", class: "btn btn-danger" %>
+			<div id="form">
+				<h2>Postuler à ce job</h2>
+			<% if user_signed_in? %>
+				<div class="application-form">
+					<%= simple_form_for [@job, @job_request] do |f| %>
+					<%= f.input :message, placeholder: 'Présente-toi rapidement et explique au recruteur pourquoi tu es le candidat ideal',:input_html => {:rows => 10} %>
+					<%= f.submit "Postuler", id:"btn-postuler", class: "btn btn-danger" %>
+					<% end %>
+				</div>
+			<% else %>
+				<div> yes </div>
 			<% end %>
-			
 		</div>
 	</div>
 </div>
