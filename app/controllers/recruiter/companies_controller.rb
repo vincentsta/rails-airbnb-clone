@@ -1,4 +1,9 @@
 class Recruiter::CompaniesController < ApplicationController
+
+  def offers
+
+  end
+
   def show
 
     @user = User.find(params[:id])
