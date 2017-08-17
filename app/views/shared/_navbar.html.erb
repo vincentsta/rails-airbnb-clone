@@ -13,7 +13,20 @@
       <%= link_to "Recherche", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Dashboard", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
 
-      <!-- Avatar with dropdown menu -->
+
+    <% elsif user_signed_in? && current_user.is_candidate == false %>
+
+      <!-- Links when logged in -->
+      <%= link_to "Offres", "#{root_path}", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Dashboard", recruiter_company_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+
+
+    <% else %>
+      <!-- Login link (when logged out) -->
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% end %>
+
+ <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
 
@@ -43,17 +56,6 @@
         </div>
       </div>
 
-    <% elsif user_signed_in? && current_user.is_candidate == false %>
-
-      <!-- Links when logged in -->
-      <%= link_to "Offres", "#{root_path}", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashboard", recruiter_company_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
-
-
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <% end %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
