@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users,
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  
   root to: 'jobs#home'
   resources :jobs, only: [ :index, :show] do
 
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
     resources :job_requests, only: [ :create, :edit, :update ]
     
   end
+  
   resources :users, only: [ :show]
 
   namespace :recruiter do
