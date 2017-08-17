@@ -9,10 +9,10 @@ class JobsController < ApplicationController
   end
 
   def index
-    search_for_index(jobs_params)
-    @jobs = @jobs.sort_by {|job| job.title}
-    jobs_categories
-    @j_ids = @jobs.map { |job| job.id } || [0]
+    search_matching_jobs(jobs_params)
+    sort_jobs_by_title
+    retrieve_jobs_categories
+    # @j_ids = @jobs.map { |job| job.id } || [0]
   end
 
 
@@ -21,25 +21,26 @@ class JobsController < ApplicationController
   end
 
   def filter
-    search_for_index(filter_jobs_params)
-    jobs_categories
-    @j_ids = @jobs.map { |job| job.id } || [0]
+    search_matching_jobs(filter_jobs_params)
+    sort_jobs_by_title
+    retrieve_jobs_categories
+    # @j_ids = @jobs.map { |job| job.id } || [0]
 
-    previous_ids = filter_jobs_params[:job_ids].split(" ") || [0]
-    previous_jobs = previous_ids.map { |id| Job.find(id.to_i) } || []
+    # previous_ids = filter_jobs_params[:job_ids].split(" ") || [0]
+    # previous_jobs = previous_ids.map { |id| Job.find(id.to_i) } || []
 
-    @new_jobs = @jobs.reject { |job| previous_jobs.include?(job) } || []
-    suppr_jobs = previous_jobs.reject { |job| @jobs.include?(job) } || []
-    @suppr_jobs_id = suppr_jobs.map { |job| job.id } || [0]
+    # @new_jobs = @jobs.reject { |job| previous_jobs.include?(job) } || []
+    # suppr_jobs = previous_jobs.reject { |job| @jobs.include?(job) } || []
+    # @suppr_jobs_id = suppr_jobs.map { |job| job.id } || [0]
 
-    if previous_jobs.nil? || previous_jobs.length == 0
-      render :index
-    else
-      respond_to do |format|
-        format.html
-        format.js  # <-- idem
-      end
-    end
+    # if previous_jobs.nil? || previous_jobs.length == 0
+    #   render :index
+    # else
+    #   respond_to do |format|
+    #     format.html
+    #     format.js  # <-- idem
+    #   end
+    # end
   end
 
   private
@@ -48,7 +49,7 @@ class JobsController < ApplicationController
    @job = Job.find(params[:id])
   end
 
-  def jobs_categories
+  def retrieve_jobs_categories
     # definit les categories de job pour afficher dans les filtres
     @categories = Job.select(:category).distinct.map do |job|
       job.category
@@ -61,23 +62,44 @@ class JobsController < ApplicationController
   end
 
   def filter_jobs_params
-    params.require(:query).permit(:location, :start_date, :end_date, :job_ids)
+    params.require(:query).permit(:location, :start_date, :end_date, :category, :min_salary)
   end
 
-  def search_for_index(params)
-    location_string = params[:location]
-    location = location_string unless location_string.nil? || location_string.length == 0
-    # Recuperation des dates et passage de string en format date
-    sdate_string = params[:start_date]
-    sdate = Date.parse(sdate_string) unless sdate_string.nil? || sdate_string.length == 0
-    edate_string = params[:end_date]
-    edate = Date.parse(edate_string) unless edate_string.nil? || edate_string.length == 0
-    jobs = location ? Job.where("location ILIKE ?", "%#{location}") : Job.all
-    jobs_filtered_by_dates =  []
-    jobs.each do |job|
-      jobs_filtered_by_dates << job if (sdate.nil? || job.start_date > sdate) && (edate.nil? || job.end_date < edate)
+  def sort_jobs_by_title
+    @jobs = @jobs.sort_by {|job| job.title}
+  end
+
+  def search_matching_jobs(params)
+    @search = {}
+    # Traitement des parametres
+    params.each do |pkey, pvalue|
+      unless pvalue.nil? || pvalue.length == 0
+        if pkey.include?("date")
+          p_ok = Date.parse(pvalue)
+        elsif pkey.include?("salary")
+          p_ok = pvalue.to_i
+        else
+          p_ok = pvalue
+        end
+        @search[pkey.to_sym] = p_ok
+      end
     end
-    @jobs = jobs_filtered_by_dates
-    @search = {location: location, start_date: sdate, end_date: edate}
+    # Filtres
+    # Par location
+    jobs_by_location = @search[:location] ? Job.where("location ILIKE ?", "%#{@search[:location]}") : Job.all
+    # Par date
+    sdate = @search[:start_date]
+    edate = @search[:end_date]
+    jobs_by_dates = jobs_by_location.select do |job|
+      (sdate.nil? || job.start_date > sdate) && (edate.nil? || job.end_date < edate)
+    end
+    # Par categorie
+    jobs_by_category = @search[:category].nil? ? jobs_by_dates : jobs_by_dates.select do |job|
+      job.category == @search[:category]
+    end
+    # Par salaire mini
+    @jobs = @search[:min_salary].nil? ? jobs_by_category : jobs_by_category.select do |job|
+      job.monthly_salary >= @search[:min_salary]
+    end
   end
 end

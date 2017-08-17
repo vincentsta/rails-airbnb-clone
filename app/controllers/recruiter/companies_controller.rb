@@ -1,12 +1,13 @@
 class Recruiter::CompaniesController < ApplicationController
   def show
 
-    @company = Company.find(params[:id])
-     #   if params[:id].to_i == current_user.id && @user.is_candidate == false
+    @user = User.find(params[:id])
+    @company = @user.companies.first
 
-  #   else
-  #     redirect_to jobs_path
-  #   end
-  # end
+    if params[:id].to_i == current_user.id && @user.is_candidate == false
+    else
+      redirect_to root_path
+    end
   end
+
 end

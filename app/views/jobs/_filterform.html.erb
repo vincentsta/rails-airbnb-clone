@@ -1,0 +1,40 @@
+<%= simple_form_for :query,  url: filtered_jobs_path, :method => :post do |f| %>
+  <div class="filter-line">
+      <%= f.input :start_date,
+        required: false,
+        as: :string,
+        label: "Dates",
+        wrapper_html: { class: 'form-inline filter-half' },
+        label_html: { class: "first-label-half" },
+        input_html: {type: :date, value: @search[:start_date]} %>
+      <%= f.input :end_date,
+        required: false,
+        label: "au",
+        wrapper_html: { class: 'form-inline' },
+        # label_html: { class: "col-xs-2" },
+        input_html: {type: :date, value: @search[:end_date]} %>
+  </div>
+  <%= f.input :location,
+  required: false,
+  label: "Ville",
+  placeholder: "Paris",
+  wrapper_html: { class: 'filter-line' },
+  label_html: { class: "first-label" },
+  input_html: {value: @search[:location] } %>
+  <%= f.input :min_salary,
+    required: false,
+    label: "Salaire min",
+    as: :currency,
+    placeholder: '2 000',
+    wrapper_html: { class: 'filter-line' },
+    label_html: { class: "first-label" },
+    input_html: {value: @search[:min_salary], class: "first-label"} %>
+  <%= f.input :category,
+    collection: @categories,
+    required: false,
+    label: "Catégorie",
+    wrapper_html: { class: 'filter-line' },
+    label_html: { class: "first-label" },
+    input_html: {value: @search[:category]} %>
+  <%= f.submit "Filtrer", class: "btn btn-primary full-width btn-lg filter-inline" %>
+<% end %>
