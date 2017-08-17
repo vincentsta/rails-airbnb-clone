@@ -25,7 +25,7 @@
 					</form>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
 </div>
 
@@ -39,9 +39,7 @@
 				<div class="row">
 					<div class="jobs-examples-category-cards">
 						<% @jobs.each do |job| %>
-						<div class="col-xs-12 col-sm-6 col-md-4">
 							<%= render 'jobcard', job: job %>
-						</div>
 						<% end %>
 					</div>
 				</div>
@@ -49,3 +47,28 @@
 		</div>
 	</div>
 </div>
+
+
+<% content_for(:js) do %>
+  <%= javascript_tag do  %>
+    let rotateCards = () => {
+      var cards = document.querySelectorAll(".card");
+      cards.forEach((card) => {
+        TweenLite.set(".card", {perspective:800});
+        TweenLite.set(".card-main", {transformStyle:"preserve-3d"});
+        TweenLite.set(".back", {rotationY:-180});
+        TweenLite.set([".back", ".front"], {backfaceVisibility:"hidden"});
+        $(".card").hover(
+          function() {
+            TweenLite.to($(this).find(".card-main"), 1.2, {rotationY:180, ease:Back.easeOut});
+          },
+          function() {
+            TweenLite.to($(this).find(".card-main"), 1.2, {rotationY:0, ease:Back.easeOut});
+          }
+        );
+      });
+    };
+
+    rotateCards();
+  <% end %>
+<% end %>

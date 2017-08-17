@@ -19,5 +19,6 @@
     <%= render 'shared/footer' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
     <%= javascript_include_tag 'application' %>
+    <%= yield(:js) %>
   </body>
 </html>
