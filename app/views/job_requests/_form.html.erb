@@ -1,6 +1,7 @@
 <%= simple_form_for([job, job_request]) do |f| %>
-  <%= f.input :current_status, :collection => ['Pending', 'Accepted', 'Refused'], :class => 'text-small-size'%>
-  <%= f.button :submit, "Mettre à jour", :class => 'text-small-size btn btn-success'%>
+  <%= f.input :current_status, :collection => ['Pending', 'Accepted', 'Refused'], input_html: { class: 'text-small-size' }, label: false%>
+  <%= f.submit "add a review", class: "btn btn-primary" %>
 <% end %>
+
 
 

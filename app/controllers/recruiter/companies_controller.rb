@@ -1,9 +1,5 @@
 class Recruiter::CompaniesController < ApplicationController
 
-  def offers
-
-  end
-
   def show
 
     @user = User.find(params[:id])
@@ -15,4 +11,22 @@ class Recruiter::CompaniesController < ApplicationController
     end
   end
 
+
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
 end
+
+  private
+
+  def set_job
+  end

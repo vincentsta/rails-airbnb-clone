@@ -3,38 +3,78 @@
 
 
     <h1>
-      Dashboard des candidatures
+      Dashboard entreprise
     </h1>
 
-      <%= @company.name %>, voici votre historique de candidatures :
+    <%= @company.name %>, voici votre historique de candidatures :
 
-      <% @company.job_requests.each do |job_request| %>
-        <div class="message">
-      <%= cl_image_tag @company.logo, height: 60, width: 60, crop: :fill %>
-
-          <div class="message-name">
-            <h3><%= job_request.user.first_name %> <%= job_request.user.last_name %></h3>
-            <h3 class="remove-margin"><%= job_request.job.title %></h3>
-            <p><%= job_request.created_at.strftime("%d/%m/%Y") %></p>
-          </div>
-
-          <div class="message-body">
-            <p><strong>Message : </strong></p>
-            <p>
-              <%= job_request.message %>
-            </p>
-          </div>
-          <div class="message-status">
-
-            <%= render 'job_requests/form', job: job_request.job, job_request: job_request %>
-
-          </div>
+    <% @company.jobs.each_with_index do |job|%>
+    <button class="accordion">
+      <div class="title-accordion">
+        <%= job.title %>
+        <div class="pending-counter">
+            <%= count_pending(job.job_requests) %>
         </div>
 
+        <%#= ajouter le bouton voir l'offre et edit %>
+      </div>
+    </button>
+      <div class="panel">
+
+    <table class="tableau">
+          <% job.job_requests.each_with_index do |job_request| %>
+
+              <tr>
+              <th width="10%">
+                <%= "#{job_request.created_at.strftime("%d/%m/%Y")}" %>
+              </th>
+              <th width="20%">
+                <%= "#{job_request.user.first_name} #{job_request.user.last_name}" %>
+              </th>
+              <th width="55%">
+                <%= "#{job_request.message}" %>
+              </th>
+              <th width="15%">
+                <%= render 'job_requests/form', job: job_request.job, job_request: job_request%>
+              </th>
+              </tr>
 
 
+          <% end %>
+     </table>
 
+      </div>
       <% end %>
+
 
   </div>
 </div>
+
+<% content_for(:js) do %>
+  <%= javascript_tag do  %>
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].onclick = function(){
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
+
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        }
+    }
+
+
+
+  <% end %>
+<% end %>
+
+
