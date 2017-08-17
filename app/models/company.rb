@@ -6,9 +6,11 @@ class Company < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :user, presence: true
   validate :user_is_not_a_candidate
-  # TODO: validates :location, presence: true
   validates :industry, presence: true
-  # TODO: gerer des categories d industries
+
+  geocoded_by :location
+  after_validation :geocode, if: :location_changed?
+
   mount_uploader :picture, PhotoUploader
   mount_uploader :logo, PhotoUploader
 

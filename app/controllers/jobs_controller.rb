@@ -12,6 +12,7 @@ class JobsController < ApplicationController
     search_matching_jobs(jobs_params)
     sort_jobs_by_title
     retrieve_jobs_categories
+    prepare_gmaps
     # @j_ids = @jobs.map { |job| job.id } || [0]
   end
 
@@ -24,6 +25,7 @@ class JobsController < ApplicationController
     search_matching_jobs(filter_jobs_params)
     sort_jobs_by_title
     retrieve_jobs_categories
+    prepare_gmaps
     # @j_ids = @jobs.map { |job| job.id } || [0]
 
     # previous_ids = filter_jobs_params[:job_ids].split(" ") || [0]
@@ -101,5 +103,16 @@ class JobsController < ApplicationController
     @jobs = @search[:min_salary].nil? ? jobs_by_category : jobs_by_category.select do |job|
       job.monthly_salary >= @search[:min_salary]
     end
+  end
+
+  def prepare_gmaps
+    @jobs = Job.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@jobs) do |job, marker|
+      marker.lat job.latitude
+      marker.lng job.longitude
+      marker.infowindow render_to_string(partial: "/jobs/map_box", locals: { job: job })
+    end
+
   end
 end

@@ -35,6 +35,8 @@
   </div>
 </div>
 
+var coord = <%= raw @flat_coordinates.to_json %>;
+
 <% content_for(:js) do %>
   <%= javascript_tag do  %>
     let animateFilterBtn = () => {
@@ -71,20 +73,19 @@
 
     animateFilterBtn();
     rotateCards();
-  <% end %>
-
-  <script>
-    function initMap() {
-      // Create a map object and specify the DOM element for display.
-      var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 52.5206, lng: 13.4098},
-        scrollwheel: false,
-        zoom: 8
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
       });
-    }
-  </script>
-    <!-- Gmaps JavaScript -->
-  <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzER7O10ZOUp7FloJzMe2r8X1GIQhgt7Q&callback=initMap">
-  </script>
+    });
+
+  <% end %>
 <% end %>
