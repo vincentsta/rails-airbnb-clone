@@ -35,8 +35,6 @@
   </div>
 </div>
 
-var coord = <%= raw @flat_coordinates.to_json %>;
-
 <% content_for(:js) do %>
   <%= javascript_tag do  %>
     let animateFilterBtn = () => {
@@ -73,19 +71,48 @@ var coord = <%= raw @flat_coordinates.to_json %>;
 
     animateFilterBtn();
     rotateCards();
+
+
+
     $(document).ready(function() {
+
       var handler = Gmaps.build('Google');
+
       handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(displayOnMap);
+      }
+
+
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      if (markers.length == 0) {
+        handler.getMap().setZoom(2);
         } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
+        handler.getMap().setZoom(14);
         }
+
+
       });
-    });
+
+
+      function displayOnMap(position) {
+        var homemarker = handler.addMarker({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          picture: {
+                  url: "<%= image_url('geoloc.png') %>",
+                  width:  36,
+                  height: 36
+                },
+                infowindow: "Ta position!"
+        });
+      };
+
+
+      });
 
   <% end %>
 <% end %>

@@ -106,7 +106,7 @@ class JobsController < ApplicationController
   end
 
   def prepare_gmaps
-    @jobs = Job.where.not(latitude: nil, longitude: nil)
+    @jobs = @jobs.reject { |job| job.latitude==nil && job.longitude==nil }
 
     @hash = Gmaps4rails.build_markers(@jobs) do |job, marker|
       marker.lat job.latitude
