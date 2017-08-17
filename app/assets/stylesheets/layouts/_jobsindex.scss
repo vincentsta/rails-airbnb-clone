@@ -20,13 +20,13 @@
   margin: 10px;
 }
 .layout-results {
-  flex: 0 0 70%;
+  flex: 0 0 60%;
 }
 
 .layout-map {
   /*flex-basis: 300px;*/
   /*width: 400px;*/
-  flex: 0 0 30%;
+  flex: 0 0 40%;
 }
 
 .collapse {
@@ -41,15 +41,36 @@
 // }
 
 .filter-form {
-  padding: 20px 5px;
+  text-align: left;
+  padding: 20px;
+  label, input {
+    font-size: 14px;
+    margin: auto 5px;
+  }
+  .first-label-half {
+    width: 100px;
+  }
+  .first-label {
+    flex: 0 0 100px;
+  }
+  .filter-line {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .filter-half {
+    flex: 0 0 50%
+  }
+  .form-group {
+    font-size: 14px;
+    margin-bottom: 1em;
+  }
 }
+
+
 
 @media (max-width: 600px) {
   .layout-main {
     flex-direction: column;
   }
-}
-
-.new .card {
-  border: 3px solid $red;
 }
