@@ -1,4 +1,4 @@
-<div class="navbar-wagon">
+<div class="navbar-wagon <%= yield(:navbar_class) %>">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "http://res.cloudinary.com/dkalpv2xf/image/upload/v1502728312/Projet/Laura-logo.png" %>
@@ -7,7 +7,7 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user.is_candidate %>
 
       <!-- Links when logged in -->
       <%= link_to "Recherche", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
@@ -16,7 +16,13 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
+          <div class="new_avatar dropdown-toggle", id="navbar-wagon-menu" data-toggle= "dropdown">
+            <%= "#{current_user.first_name[0]}#{current_user.last_name[0]}" %>
+          </div>
+
+          <%#= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>
@@ -24,7 +30,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
+              <%= link_to root_path do %>
                 <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
               <% end %>
             </li>
@@ -36,6 +42,14 @@
           </ul>
         </div>
       </div>
+
+    <% elsif user_signed_in? && current_user.is_candidate == false %>
+
+      <!-- Links when logged in -->
+      <%= link_to "Offres", "#{root_path}", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Dashboard", recruiter_company_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+
+
     <% else %>
       <!-- Login link (when logged out) -->
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>

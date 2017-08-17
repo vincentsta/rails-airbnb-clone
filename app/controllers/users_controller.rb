@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if params[:id].to_i == current_user.id && @user.is_candidate
 
     else
-      redirect_to jobs_path
+      redirect_to root_path
     end
   end
 
