@@ -49,12 +49,14 @@
 			<% if user_signed_in? %>
 				<div class="application-form">
 					<%= simple_form_for [@job, @job_request] do |f| %>
-					<%= f.input :message, placeholder: 'Présente-toi rapidement et explique au recruteur pourquoi tu es le candidat ideal',:input_html => {:rows => 10} %>
+					<%= f.hidden_field :current_status, value: 'pending' %>
+					<%= f.input :message, placeholder: 'Présente-toi rapidement et explique au recruteur pourquoi tu es le candidat ideal',:input_html => {:rows => 20} %>
 					<%= f.submit "Postuler", id:"btn-postuler", class: "btn btn-danger" %>
 					<% end %>
 				</div>
 			<% else %>
-				<div> yes </div>
+				<div class="connexion"> Tu dois être connecté pour postuler à cette offre </div>
+				<div> <%= link_to 'Connexion', user_session_path, class:"btn btn-danger" %> </div>
 			<% end %>
 		</div>
 	</div>

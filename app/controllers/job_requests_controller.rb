@@ -1,13 +1,14 @@
 class JobRequestsController < ApplicationController
 
-   before_action :set_job_request, only: [:edit, :update ]
+   before_action :set_job_request, only: [:edit, :update ]  
 
   def create
 	  @user = current_user
-  	@job_request = JobRequest.new
-  	@job = Job.find(params[:job_id])
+  	@job_request = JobRequest.new(job_request_params)
+    @job = Job.find(params[:job_id])
   	@job_request.job_id = @job.id
   	@job_request.user_id = @user.id
+
 
     if @job_request.save
       flash[:notice] = "Ta candidature au poste de #{@job_request.job.title} a bien été transmise à #{@job_request.job.company.name}"
@@ -38,7 +39,7 @@ class JobRequestsController < ApplicationController
   end
 
 	def job_request_params
-    params.require(:job_request).permit(:job_id, :user_id, :current_status, :message)
+    params.require(:job_request).permit(:current_status, :message)
   end
 
 end

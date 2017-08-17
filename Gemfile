@@ -21,6 +21,7 @@ gem 'devise'
 gem 'cloudinary'
 gem 'faker'
 gem 'carrierwave', '~> 0.11.2'
+gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
 
 group :development, :test do
   gem 'pry-byebug'
