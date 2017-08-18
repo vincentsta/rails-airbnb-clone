@@ -3,7 +3,7 @@
 
 require 'open-uri' # Open an url
 require 'nokogiri' # HTML ==> Nokogiri Document
-require 'pry-byebug'
+# require 'pry-byebug'
 
 def parse_jobs_list(page_number)
   url = "https://azertyjobs.com/page/#{page_number}"
