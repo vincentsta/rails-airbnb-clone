@@ -1,19 +1,19 @@
 <div class="content">
 	<div class="job-container">
 		<div class="row">
-			
+
 			<div class="job-highlight">
-				
+
 				<div class="job-logo">
 					<%= image_tag @job.company.logo, height: 150, width: 150, crop: :fill %>
 				</div>
-				
+
 				<div class="job-title">
 					<h2> <%= @job.title %> </h2>
 					<h3><%= @job.company.name %></h3>
 					<p><%= @job.company.industry %></p>
 				</div>
-				
+
 				<div class="job-infos">
 					<ul>
 						<div class=	"col-xs-12">
@@ -44,7 +44,7 @@
 					<h3><i class="fa fa-map-marker" aria-hidden="true"></i>  Localisation </h3>
 
 					<div id="map-job">
-						<% url="https://maps.googleapis.com/maps/api/staticmap?center=&zoom=13&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@job.company.location.gsub(/\s/,'+')}" %>
+						<% url="https://maps.googleapis.com/maps/api/staticmap?center=&zoom=13&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@job.location.gsub(/\s/,'+')}" %>
 						<img src="<%= url %>" alt="">
 					</div class="job-profile-content">
 				<!-- <script>
