@@ -271,6 +271,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)
+  nokogiri
   omniauth-facebook
   omniauth-linkedin-oauth2
   pg
