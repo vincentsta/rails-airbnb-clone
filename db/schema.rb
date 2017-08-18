@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818090046) do
+ActiveRecord::Schema.define(version: 20170818102743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,27 @@ ActiveRecord::Schema.define(version: 20170818090046) do
     t.float    "latitude"
     t.float    "longitude"
     t.index ["user_id"], name: "index_companies_on_user_id", using: :btree
+  end
+
+  create_table "job_loaders", force: :cascade do |t|
+    t.string   "cname"
+    t.string   "cpath"
+    t.string   "clogourl"
+    t.string   "title"
+    t.string   "path"
+    t.text     "tags"
+    t.string   "city"
+    t.text     "shortdesc"
+    t.text     "detailtags"
+    t.string   "imgurl"
+    t.text     "deschtml"
+    t.text     "desctext"
+    t.text     "profilhtml"
+    t.text     "profiltext"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "img"
+    t.string   "logo"
   end
 
   create_table "job_requests", force: :cascade do |t|

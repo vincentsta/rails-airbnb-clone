@@ -1,10 +1,12 @@
 <div class="container">
   <div class="box">
 
-
+  <div class="flexbox-dashboard-title">
     <h1>
       Dashboard entreprise
     </h1>
+    <%= link_to 'Add a job', new_recruiter_company_job_path(@company), {class: 'btn btn-success'}%>
+  </div>
 
     <%= @company.name %>, voici votre historique de candidatures :
 

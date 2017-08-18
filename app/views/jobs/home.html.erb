@@ -33,9 +33,21 @@
 <div class="container">
 	<div class="jobs-examples">
 		<div class="row">
-			<div class="jobs-example-1">
+			<div class="jobs-example">
 				<div class="jobs-examples-category">
 					<h2>Derniers jobs mis en ligne</h2>
+				</div>
+				<div class="row">
+					<div class="jobs-examples-category-cards">
+						<% @jobs.each do |job| %>
+							<%= render 'jobcard', job: job %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div class="jobs-example">
+				<div class="jobs-examples-category">
+					<h2>Jobs à Paris</h2>
 				</div>
 				<div class="row">
 					<div class="jobs-examples-category-cards">

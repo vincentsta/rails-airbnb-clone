@@ -1,7 +1,22 @@
 <%= simple_form_for([job, job_request]) do |f| %>
-  <%= f.input :current_status, :collection => ['Pending', 'Accepted', 'Refused'], input_html: { class: 'text-small-size' }, label: false%>
-  <%= f.submit "add a review", class: "btn btn-primary" %>
+  <%= f.input :current_status, :collection => ['Pending', 'Accepted', 'Refused'], input_html: { class: 'text-small-size dropdown-list' }, label: false%>
+  <%= f.submit "add a review", class: "btn btn-primary delete-btn" %>
 <% end %>
 
 
+
+<% content_for(:js) do %>
+  <%= javascript_tag do  %>
+
+    var btnsSupr = document.querySelectorAll('.delete-btn');
+    console.log(btnsSupr);
+
+    btnsSupr.forEach((element) => {
+      element.style.display = 'none';
+      console.log(element);
+    });
+
+
+  <% end %>
+<% end %>
 

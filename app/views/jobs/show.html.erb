@@ -18,13 +18,13 @@
 					<ul>
 						<div class=	"col-xs-12">
 							<div class="job-infos-dates">
-								<p>Dates </p>
+								<p> <i class="fa fa-calendar" aria-hidden="true"></i> Dates </p>
 								<li><%= @job.start_date%> - <%= @job.end_date %></li>
 							</div>
 						</div>
 						<div class="col-xs-12">
 							<div class="job-infos-salaire">
-								<p>Salaire </p>
+								<p> <i class="fa fa-eur" aria-hidden="true"></i> Salaire </p>
 								<li><%= @job.monthly_salary %> euros/mois </li>
 							</div>
 						</div>
@@ -32,13 +32,30 @@
 				</div>
 			</div>
 			<div class="job-details">
-				<div class="job-description">
-					<h3>Description de l'offre</h3>
-					<%= @job.description %>
+				<div class="job-profile">
+					<h3><i class="fa fa-tasks" aria-hidden="true"></i>  Description de l'offre</h3>
+					<div class="job-profile-content"><%= @job.description %></div>
 				</div>
 				<div class="job-profile">
-					<h3>Profil recherche</h3>
-					<%= @job.profile %>
+					<h3><i class="fa fa-user" aria-hidden="true"></i>  Profil recherche</h3>
+					<div class="job-profile-content"><%= @job.profile %></div>
+				</div>
+				<div class="job-profile">
+					<h3><i class="fa fa-map-marker" aria-hidden="true"></i>  Localisation </h3>
+
+					<div id="map-job">
+						<% url="https://maps.googleapis.com/maps/api/staticmap?center=&zoom=13&scale=1&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C#{@job.company.location.gsub(/\s/,'+')}" %>
+						<img src="<%= url %>" alt="">
+					</div class="job-profile-content">
+				<!-- <script>
+					document.querySelectorAll("job-profile").forEach((element) =>{
+						element.addEventListener("click", (event)=>{
+							event.target.expand)
+							)
+						}
+					})
+				</script> -->
+
 				</div>
 			</div>
 		</div>
