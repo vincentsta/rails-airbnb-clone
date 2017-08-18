@@ -16,10 +16,10 @@ class Recruiter::JobsController < ApplicationController
     @job = Job.find(params[:id])
   end
 
-  def update
-    @job.update(job_params)
-    redirect_to restaurant_path(@restaurant)
-  end
+  # def update
+  #   @job.update(job_params)
+  #   redirect_to restaurant_path(@restaurant)
+  # end
 
   private
 
