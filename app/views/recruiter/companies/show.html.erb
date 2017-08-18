@@ -24,7 +24,7 @@
       <div class="panel">
 
     <table class="tableau">
-          <% job.job_requests.each_with_index do |job_request| %>
+          <% job.job_requests.each do |job_request| %>
 
               <tr>
               <th width="10%">
@@ -37,7 +37,7 @@
                 <%= "#{job_request.message}" %>
               </th>
               <th width="15%">
-                <%= render 'job_requests/form', job: job_request.job, job_request: job_request%>
+                <%= render 'job_requests/form', job: job_request.job, job_request: job_request %>
               </th>
               </tr>
 
@@ -73,6 +73,21 @@
             }
         }
     }
+
+    var btnsSupr = document.querySelectorAll('.delete-btn');
+
+    btnsSupr.forEach((element) => {
+      element.style.display = 'none';
+    });
+
+    var dropdown = document.querySelectorAll('.dropdown-list');
+    console.log(dropdown);
+
+    dropdown.forEach((element) => {
+        element.addEventListener("blur", (event) => {
+          event.target.parentElement.parentElement.querySelector('.delete-btn').click();
+      });
+    });
 
 
 

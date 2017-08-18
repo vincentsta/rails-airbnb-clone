@@ -25,7 +25,7 @@ class JobRequestsController < ApplicationController
   def update
     @job = @job_request.job
     @job_request.update(job_params)
-    redirect_to recruiter_company_path(current_user)
+    redirect_to recruiter_company_path(@job.company)
   end
 
    private
