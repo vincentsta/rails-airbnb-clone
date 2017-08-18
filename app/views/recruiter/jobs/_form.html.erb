@@ -1,0 +1,15 @@
+
+<div class='form-new-job'>
+  <%= simple_form_for @job, url: recruiter_company_jobs_path(@company) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :monthly_salary %>
+  <%= f.input :description %>
+  <%= f.input :profile %>
+  <%= f.input :category %>
+  <%= f.input :location %>
+  <%= f.input :image %>
+  <%= f.button :submit, class: 'large-btn btn-success' %>
+  <% end %>
+</div>

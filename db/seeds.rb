@@ -228,6 +228,3 @@ end
 # parse_jobs_list(4)
 # save_json
 seed_new_data
-
-
-

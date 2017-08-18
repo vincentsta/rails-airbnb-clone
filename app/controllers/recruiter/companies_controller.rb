@@ -1,32 +1,22 @@
 class Recruiter::CompaniesController < ApplicationController
 
   def show
+    @user = current_user
+    @company = Company.find(params[:id])
+    @jobs = @company.jobs
 
-    @user = User.find(params[:id])
-    @company = @user.companies.first
-
-    if params[:id].to_i == current_user.id && @user.is_candidate == false
+    if @user.is_candidate == false
     else
       redirect_to root_path
     end
   end
 
 
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
 end
 
   private
 
-  def set_job
+
+  def job_params
+    params.require(:job).permit(:title, :start_date, :end_date, :monthly_salary, :description, :profile, :company_id, :category, :location, :image)
   end

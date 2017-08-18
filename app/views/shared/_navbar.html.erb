@@ -47,7 +47,7 @@
 
       <!-- Links when logged in -->
       <%= link_to "Offres", "#{root_path}", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Dashboard", recruiter_company_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Dashboard", recruiter_company_path(current_user.companies.first), class: "navbar-wagon-item navbar-wagon-link" %>
 
        <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">

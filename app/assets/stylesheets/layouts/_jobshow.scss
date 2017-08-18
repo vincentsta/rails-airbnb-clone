@@ -74,18 +74,6 @@
 	list-style-type: none;
 }
 
-.job-description {
-	background-color: rgba(255,255,255,0.9);
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	border: white 1px solid;
-	margin-top: 10px;
-	padding : 20px;
-	height: 300px;
-	font-weight: lighter;
-	h3{
-		font-size: 18px;
-	}
-}
 
 .job-profile {
 	background-color: rgba(255,255,255,0.9);
@@ -93,7 +81,7 @@
 	border: white 1px solid;
 	margin-top: 10px;
 	padding : 20px;
-	height: 200px;
+	height: 400px;
 	font-weight: lighter;
 	h3{
 		font-size: 18px;
@@ -117,13 +105,14 @@
   padding: 20px;
   margin-left: 30px;
   text-align: center;
-  h2 {
-	font-size: 24px;
-	font-weight: bold;
+
+  h2{
+	font-size: 22px;
 	text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 	color: red;
 	opacity: 0.6;
-  }
+	padding-top:0px;
+	}
 }
 
 .application-form {
@@ -139,5 +128,7 @@
   padding: 30px;
 }
 
-
+#map-job {
+	text-align: center;
+}
 

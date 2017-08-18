@@ -1,3 +1,33 @@
 .text-small-size{
-  font-size: 15px !important;
+  font-size: 17px !important;
 }
+
+.large-btn{
+  width: 100%;
+}
+
+.form-new-job{
+
+  .form-group {
+
+  }
+
+  .control-label {
+    font-size: 17px;
+    font-weight: lighter;
+    color: $red-laura;
+  }
+
+  .form-control {
+    font-size: 17px;
+    font-weight: lighter;
+  }
+
+}
+
+
+.white-wrapper {
+    background-color: white;
+    margin: 30px;
+    padding: 30px 100px;
+  }

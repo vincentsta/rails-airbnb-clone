@@ -23,6 +23,7 @@ gem 'faker'
 gem 'carrierwave', '~> 0.11.2'
 gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
 gem 'omniauth-facebook'
+gem 'omniauth-linkedin-oauth2'
 gem 'geocoder'
 gem "coffee-rails"
 gem "gmaps4rails"
