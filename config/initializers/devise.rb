@@ -279,4 +279,9 @@ Devise.setup do |config|
     info_fields: 'email, first_name, last_name',
     image_size: 'square',  # 50x50, guaranteed ratio
     secure_image_url: true
+
+  config.omniauth :linkedin, ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"],
+    fields: 'email-address, first-name, last-name',
+    secure_image_url: true
+
 end
