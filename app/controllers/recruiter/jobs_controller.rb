@@ -6,7 +6,6 @@ class Recruiter::JobsController < ApplicationController
   end
 
   def create
-    raise
     @job = Job.new(job_params)
     @job.save
     redirect_to recruiter_company_path(current_user.companies.first)
