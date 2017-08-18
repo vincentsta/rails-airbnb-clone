@@ -44,3 +44,10 @@ div.panel {
   display: flex;
   text-align: center;
 }
+
+.flexbox-dashboard-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
