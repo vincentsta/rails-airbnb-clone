@@ -41,8 +41,8 @@ def parse_job(job_doc)
 
   job_city = job_doc.search('.location').first.text #OK
 
-  company = {name: company_name, path: company_path, logo_url: logo_url }
-  job = { company: company_name, title: job_title, path: job_path, tags: job_tags, city: job_city, short_desc: job_short_desc }
+  company = {cname: company_name, cpath: company_path, clogourl: logo_url }
+  job = { title: job_title, path: job_path, tags: job_tags, city: job_city, shortdesc: job_short_desc }
 
   job_url = "https://azertyjobs.com#{job_path}"
 
@@ -61,9 +61,9 @@ def parse_job_page(job_url)
   html_file = open(job_url)
   html_doc = Nokogiri::HTML(html_file)
   job_doc = html_doc.search(".wrapper-content-job").first
-  job_tags = job_doc.search(".wrapper-aside-job-page > ul").first
-    job_loc = job_tags.search("li > p").first.text #OK
-    comp_emp = job_tags.search("li > p").last.text #OK
+  job_tags = job_doc.search(".wrapper-aside-job-page > ul").search("li > p").map do |tag|
+    tag.text
+  end
 
   job_desc = job_doc.search(".description-job > div")
     job_img_url = job_desc.first.search('img').attribute('src').value #OK à sauver
@@ -74,9 +74,9 @@ def parse_job_page(job_url)
     job_profile_html = job_profile.inner_html
     job_profile_text = job_profile.text
 
-  job_details = { location: job_loc, nb_emp: comp_emp, img_url: job_img_url,
-    desc_html: job_desc_html, desc_text: job_desc_html,
-    profile_html: job_profile_html, profil_text: job_profile_text
+  job_details = { detailtags: job_tags, imgurl: job_img_url,
+    deschtml: job_desc_html, desctext: job_desc_html,
+    profilhtml: job_profile_html, profiltext: job_profile_text
   }
 
   return job_details
