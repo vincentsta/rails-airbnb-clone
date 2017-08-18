@@ -2,7 +2,7 @@
 # curl --silent https://www.welcometothejungle.co/companies?q=&hPP=30&idx=cms_companies_production&p=0&dFR%5Bcompany_size%5D%5B0%5D=Entre%2015%20et%2050%20salari%C3%A9s&dFR%5Bcompany_size%5D%5B1%5D=%3C%2015%20salari%C3%A9s&dFR%5Bcompany_size%5D%5B2%5D=Entre%2050%20et%20250%20salari%C3%A9s&dFR%5Boffices%5D%5B0%5D=Paris&is_v=1 > companies.html
 
 require 'open-uri' # Open an url
-require 'nokogiri' # HTML ==> Nokogiri Document
+# require 'nokogiri' # HTML ==> Nokogiri Document
 require 'faker'
 
 
