@@ -1,6 +1,6 @@
 class JobRequestsController < ApplicationController
 
-   before_action :set_job_request, only: [:edit, :update ]  
+   before_action :set_job_request, only: [:edit, :update ]
 
   def create
 	  @user = current_user
@@ -17,7 +17,7 @@ class JobRequestsController < ApplicationController
       render "jobs/show"
     end
   end
-  
+
   def edit
     @job = @job_request.job
   end
@@ -25,7 +25,7 @@ class JobRequestsController < ApplicationController
   def update
     @job = @job_request.job
     @job_request.update(job_params)
-    redirect_to recruiter_company_path(@job.company)
+    redirect_to recruiter_company_path(current_user)
   end
 
    private
