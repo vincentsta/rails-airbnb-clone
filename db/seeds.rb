@@ -119,10 +119,11 @@ def load_json
 end
 
 def seed_new_data
-  JobRequest.destroy_all
-  Job.destroy_all
   Company.destroy_all
+  Job.destroy_all
+  MatchedJob.destroy_all
   User.destroy_all
+  RequiredSkill.destroy_all
 
   seed_candidates
   seed_jobs
@@ -136,9 +137,11 @@ def seed_candidates
       password: '12345678',
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
-      phone_number: '+33 6 12 34 56 78',
+      headline: Faker::Job.title,
+      location: Faker::Address.city,
+      position: Faker::Job.field,
       profile: Faker::Lorem.sentence,
-      is_candidate: true
+      picture_url: nil,
       )
     user.save
   end
